@@ -1,8 +1,8 @@
 version: '3'
 services:
-  standardisationtool:
+  webapp:
     image: "tomcat"
     ports:
       - "8080:8080"
     volumes:
-      - ./sample.war:/usr/local/tomcat/webapps/sample.war
+      - .webapps/sample.war:/usr/local/tomcat/webapps/sample.war
