@@ -3,9 +3,10 @@
 echo ubuntu:ubuntu | chpasswd
 
 echo "Installing.."
+apt-get update
 apt-get install -y software-properties-common
 apt-add-repository -y ppa:rael-gc/rvm
-apt-get update -y
+apt-get update
 apt-get install -y rvm
 
 source /etc/profile.d/rvm.sh
