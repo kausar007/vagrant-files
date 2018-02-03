@@ -1,3 +1,10 @@
+$script = <<SCRIPT
+echo ubuntu:ubuntu | chpasswd
+echo "Installing.."
+apt-get update -y
+apt-get install -y nginx
+SCRIPT
+
 Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
   config.vm.box = "ubuntu/xenial64"
@@ -6,7 +13,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 443, host: 9443
   config.vm.network "forwarded_port", guest: 8080, host: 8080
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
-  config.vm.provision "shell", path: "setup.sh"
+  config.vm.provision "shell", inline: $script
   config.vm.provider "virtualbox" do |vb|
     vb.memory = 1024
     vb.name = "nginx"
